@@ -1,0 +1,20 @@
+import db from "../db/Database.js";
+
+const HandleProfile = (request, response) => {
+  const { id } = request.params;
+
+  db.select("*")
+    .from("users")
+    .where({
+      id: id,
+    })
+    .then((allUsers) => {
+      if (allUsers.length > 0) {
+        response.json(allUsers[0]);
+      } else {
+        response.json("User not found ");
+      }
+    });
+};
+
+export default HandleProfile;
