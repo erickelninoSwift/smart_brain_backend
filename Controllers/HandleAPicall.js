@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+
+dotenv.config();
 const HandleAPIcall = (request, response) => {
   const { urlOfImage } = request.body;
   console.log(urlOfImage);
