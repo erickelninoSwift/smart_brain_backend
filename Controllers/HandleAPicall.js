@@ -1,12 +1,11 @@
 const HandleAPIcall = (request, response) => {
   const { urlOfImage } = request.body;
   console.log(urlOfImage);
-  const PAT = "6611bac68a7242638d73075acff0f5a7";
+  const PAT = process.env.APP_KEY;
 
-  const USER_ID = "jackpot11";
-  const APP_ID = "jackpotSmartBrain";
-
-  const MODEL_ID = "face-detection";
+  const USER_ID = process.env.USER_ID;
+  const APP_ID = process.env.APP_ID;
+  const MODEL_ID = process.env.MODEL_ID;
   // const MODEL_VERSION_ID = "6dc7e46bc9124c5c8824be4822abe105";
 
   const IMAGE_URL = urlOfImage;

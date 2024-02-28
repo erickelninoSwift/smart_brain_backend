@@ -1,4 +1,5 @@
 import express, { response } from "express";
+import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import HandleRegister from "./Controllers/Register.js";
@@ -6,11 +7,12 @@ import HandleSignin from "./Controllers/Signin.js";
 import HandleProfile from "./Controllers/HandleProfile.js";
 import HandleImage from "./Controllers/HandleImage.js";
 import HandleAPIcall from "./Controllers/HandleAPicall.js";
+dotenv.config();
 const app = express();
 
 app.use(cors());
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
