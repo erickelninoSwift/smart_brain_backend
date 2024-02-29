@@ -17,7 +17,7 @@ const PORT = process.env.PORT;
 app.use(bodyParser.json());
 
 app.get("/", (request, response) => {
-  response.send("App is running well");
+  response.json("Application is running very well");
 });
 app.post("/signin", HandleSignin);
 app.post("/register", HandleRegister);
