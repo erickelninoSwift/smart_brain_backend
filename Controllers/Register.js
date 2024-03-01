@@ -10,7 +10,7 @@ const passwordHashing = (saltRounds, myPlaintextPassword) => {
 };
 
 const HandleRegister = (request, response) => {
-  const { email, password, name, currentID } = request.body;
+  const { email, password, name } = request.body;
   if (!email || !password || !name) {
     return response.json("Incorrect format ");
   }
@@ -31,9 +31,7 @@ const HandleRegister = (request, response) => {
           .insert({
             email: currentUser[0].email,
             name: name,
-            joined: new Date(),
-            id: currentID,
-            entries: 0,
+            joined: new Date().getDay(),
           })
           .then((user) => {
             response.json(user[0]);
