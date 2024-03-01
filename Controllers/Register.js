@@ -10,7 +10,8 @@ const passwordHashing = (saltRounds, myPlaintextPassword) => {
 };
 
 const HandleRegister = (request, response) => {
-  const { email, password, name } = request.body;
+  const { email, password, name, currentID } = request.body;
+  console.log(currentID);
   if (!email || !password || !name) {
     return response.json("Incorrect format ");
   }
@@ -34,6 +35,7 @@ const HandleRegister = (request, response) => {
             joined: new Date().getDay(),
           })
           .then((user) => {
+            console.log(user[0]);
             response.json(user[0]);
           })
           .then(trx.commit)
