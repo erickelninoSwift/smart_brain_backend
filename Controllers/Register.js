@@ -1,7 +1,5 @@
 import bcrypt, { hash } from "bcrypt";
 import db from "../db/Database.js";
-// const saltRounds = 2;
-// const myPlaintextPassword = "s0//P4$$w0rD";
 
 const passwordHashing = (saltRounds, myPlaintextPassword) => {
   const salt = bcrypt.genSaltSync(saltRounds);
@@ -10,14 +8,13 @@ const passwordHashing = (saltRounds, myPlaintextPassword) => {
 };
 
 const HandleRegister = (request, response) => {
-  const { email, password, name, currentID } = request.body;
+  const { email, password, name } = request.body;
   console.log(currentID);
   if (!email || !password || !name) {
-    return response.json("Incorrect format ");
+    return response.status(400).json("Incorrect format ");
   }
   const hashedPassword = passwordHashing(1, password);
-  // const isRightPassword = checkPassword(password);
-  // console.log(isRightPassword);
+
   db.transaction((trx) => {
     return trx
       .insert({
@@ -35,7 +32,6 @@ const HandleRegister = (request, response) => {
             joined: new Date().getDay(),
           })
           .then((user) => {
-            console.log(user[0]);
             response.json(user[0]);
           })
           .then(trx.commit)
