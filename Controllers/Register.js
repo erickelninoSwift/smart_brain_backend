@@ -10,7 +10,7 @@ const passwordHashing = (saltRounds, myPlaintextPassword) => {
 };
 
 const HandleRegister = (request, response) => {
-  const { email, password, name } = request.body;
+  const { email, password, name, currentID, entries } = request.body;
   if (!email || !password || !name) {
     return response.status(400).json("Incorrect format ");
   }
@@ -20,6 +20,7 @@ const HandleRegister = (request, response) => {
   db.transaction((trx) => {
     return trx
       .insert({
+        id: currentID,
         hash: hashedPassword,
         email: email,
       })
@@ -32,6 +33,8 @@ const HandleRegister = (request, response) => {
             email: currentUser[0].email,
             name: name,
             joined: new Date(),
+            id: currentUser[0].currentID,
+            entries: entries,
           })
           .then((user) => {
             response.json(user[0]);
