@@ -11,7 +11,7 @@ const HandleRegister = (request, response) => {
   const { email, password, name } = request.body;
 
   if (!email || !password || !name) {
-    return response.json("Incorrect format ");
+    console.log("fields should not be left empty");
   }
   const hashedPassword = passwordHashing(2, password);
 
@@ -29,7 +29,7 @@ const HandleRegister = (request, response) => {
           .insert({
             email: currentUser[0].email,
             name: currentUser[0].name,
-            joined: new Date().getDay(),
+            joined: new Date().getDate(),
           })
           .then((user) => {
             response.json({ user });
@@ -37,7 +37,9 @@ const HandleRegister = (request, response) => {
           .then(trx.commit)
           .catch(trx.rollback);
       })
-      .catch((err) => res.json("unable to register", err));
+      .catch((err) => {
+        console.log("error while registering the user", err);
+      });
   });
 };
 
