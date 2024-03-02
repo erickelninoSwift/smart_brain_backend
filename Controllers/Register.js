@@ -22,17 +22,17 @@ const HandleRegister = (request, response) => {
         email: email,
       })
       .into("login")
-      .returning("*")
+      .returning("name", "email")
       .then((currentUser) => {
         return trx("users")
           .returning("*")
           .insert({
-            email: email,
-            name: name,
+            email: currentUser[0].email,
+            name: currentUser[0].name,
             joined: new Date().getDate(),
           })
           .then((user) => {
-            response.json({ user });
+            response.json(user);
           })
           .then(trx.commit)
           .catch(trx.rollback);
