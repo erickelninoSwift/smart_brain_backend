@@ -43,7 +43,6 @@ const HandleAPIcall = (request, response) => {
   )
     .then((alldata) => alldata.json())
     .then((result) => {
-      console.log(result.outputs[0].data.regions[0].region_info);
       response.json(result);
     })
     .catch((error) => console.log("error", error));
