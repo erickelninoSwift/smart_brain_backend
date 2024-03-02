@@ -43,7 +43,7 @@ const HandleAPIcall = (request, response) => {
   )
     .then((alldata) => alldata.json())
     .then((result) => {
-      response.status(200).json(result);
+      response.json(result);
     })
     .catch((error) => console.log("error", error));
 };
