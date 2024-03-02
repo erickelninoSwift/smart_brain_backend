@@ -16,14 +16,32 @@ const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.get("/", (request, response) => {
-  response.send("Application running very well");
-});
-app.post("/signin", HandleSignin);
-app.post("/register", HandleRegister);
-app.get("/profile/:id", HandleProfile);
-app.put("/image", HandleImage);
-app.post("/imageaddress", HandleAPIcall);
+app.get(
+  "https://jackpot-ai-application-backend.onrender.com/",
+  (request, response) => {
+    response.send("Application running very well");
+  }
+);
+app.post(
+  "https://jackpot-ai-application-backend.onrender.com/signin",
+  HandleSignin
+);
+app.post(
+  "https://jackpot-ai-application-backend.onrender.com/register",
+  HandleRegister
+);
+app.get(
+  "https://jackpot-ai-application-backend.onrender.com/profile/:id",
+  HandleProfile
+);
+app.put(
+  "https://jackpot-ai-application-backend.onrender.com/image",
+  HandleImage
+);
+app.post(
+  "https://jackpot-ai-application-backend.onrender.com/imageaddress",
+  HandleAPIcall
+);
 
 app.listen(PORT, () => {
   console.log("Server is Running on PORT ", PORT);
