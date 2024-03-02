@@ -24,7 +24,7 @@ const HandleRegister = (request, response) => {
       .into("login")
       .returning("*")
       .then((currentUser) => {
-        trx("users")
+        return trx("users")
           .returning("*")
           .insert({
             email: currentUser[0].email,
