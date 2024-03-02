@@ -6,10 +6,6 @@ const checkPassword = (passwordUser, passowrdHansed) => {
 };
 
 const HandleSignin = (request, response) => {
-  const { email, password } = request.body;
-  if (!email || !password) {
-    return response.status(400).json("All fields should not be empty");
-  }
   db.select("email", "hash")
     .from("login")
     .where({ email: request.body.email })
@@ -25,15 +21,11 @@ const HandleSignin = (request, response) => {
             response.status(200).json(userSelected[0]);
           })
           .catch((error) => {
-            return response
-              .status(400)
-              .json("user details couldnt be found ", error);
+            console.log("error", error);
           });
-      } else {
-        response.json("User not found");
       }
     })
-    .catch((err) => response.status(400).json("user not found ", err));
+    .catch((err) => console.log("error ", err));
 };
 
 export default HandleSignin;
