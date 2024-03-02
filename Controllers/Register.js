@@ -32,7 +32,7 @@ const HandleRegister = (request, response) => {
             joined: new Date().getDay(),
           })
           .then((user) => {
-            response.json(user);
+            response.json({ user });
           })
           .then(trx.commit)
           .catch(trx.rollback);
