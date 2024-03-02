@@ -29,7 +29,7 @@ const HandleAPIcall = (request, response) => {
   });
 
   const requestOptions = {
-    method: "POST",
+    method: "post",
     headers: {
       Accept: "application/json",
       Authorization: "Key " + PAT,
@@ -43,7 +43,7 @@ const HandleAPIcall = (request, response) => {
   )
     .then((alldata) => alldata.json())
     .then((result) => {
-      response.json(result[0]);
+      response.status(200).json(result);
     })
     .catch((error) => console.log("error", error));
 };
