@@ -13,7 +13,7 @@ const HandleRegister = (request, response) => {
   if (!email || !password || !name) {
     console.log("fields should not be left empty");
   }
-  const hashedPassword = passwordHashing(2, password);
+  const hashedPassword = passwordHashing(1, password);
 
   db.transaction((trx) => {
     return trx
@@ -27,8 +27,8 @@ const HandleRegister = (request, response) => {
         return trx("users")
           .returning("*")
           .insert({
-            email: currentUser[0].email,
-            name: currentUser[0].name,
+            email: email,
+            name: name,
             joined: new Date().getDate(),
           })
           .then((user) => {
