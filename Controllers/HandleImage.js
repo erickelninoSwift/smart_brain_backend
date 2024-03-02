@@ -8,7 +8,7 @@ const HandleImage = (request, response) => {
     .increment("entries", 1)
     .returning("entries")
     .then((entries) => {
-      response.json(entries[0].entries);
+      response.send(entries[0].entries);
     })
     .catch((error) => {
       response.status(400).json("Error while getting users", error);
