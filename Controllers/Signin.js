@@ -19,10 +19,10 @@ const HandleSignin = (request, response) => {
         db.select("*")
           .from("users")
           .where({
-            email: request.body.email,
+            email: userFound[0].email,
           })
           .then((userSelected) => {
-            response.json(userSelected[0]);
+            response.status(200).json(userSelected[0]);
           })
           .catch((error) => {
             return response
