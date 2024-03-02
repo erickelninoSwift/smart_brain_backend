@@ -33,7 +33,9 @@ const HandleRegister = (request, response) => {
             })
             .returning("*")
             .then((user) => {
-              response.json(user);
+              if (user) {
+                response.send(user);
+              }
             })
             .then(trx.commit)
             .catch(trx.rollback);

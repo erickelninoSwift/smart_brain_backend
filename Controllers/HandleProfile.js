@@ -10,9 +10,7 @@ const HandleProfile = (request, response) => {
     })
     .then((allUsers) => {
       if (allUsers.length > 0) {
-        response.json(allUsers[0]);
-      } else {
-        response.json("User not found ");
+        response.send(allUsers[0]);
       }
     });
 };
