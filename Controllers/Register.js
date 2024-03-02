@@ -8,7 +8,7 @@ const passwordHashing = (saltRounds, myPlaintextPassword) => {
 };
 
 const HandleRegister = (request, response) => {
-  const { email, password, name } = request.body;
+  const { email, password, name, entries } = request.body;
 
   if (!email || !password || !name) {
     console.log("fields should not be left empty");
@@ -24,9 +24,10 @@ const HandleRegister = (request, response) => {
       .into("login")
       .returning("email")
       .then((userEmail) => {
-        return trx("users")
+        trx("users")
           .insert({
-            email: userEmail,
+            entries: entries,
+            email: userEmail[0],
             name: name,
             joined: new Date().getDate(),
           })
