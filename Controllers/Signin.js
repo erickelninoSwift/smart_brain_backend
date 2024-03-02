@@ -8,14 +8,14 @@ const checkPassword = (passwordUser, passowrdHansed) => {
 const HandleSignin = (request, response) => {
   const { email, password } = request.body;
   if (!email || !password) {
-    return response.status(400).json("Incorrect data entreed");
+    return response.status(400).json("All fields should not be empty");
   }
   db.select("email", "hash")
     .from("login")
     .where({ email: request.body.email })
     .then((userFound) => {
       const result = checkPassword(request.body.password, userFound[0].hash);
-      if (result) {
+      if (result && userFound.length > 0) {
         db.select("*")
           .from("users")
           .where({
@@ -33,7 +33,7 @@ const HandleSignin = (request, response) => {
         response.json("User not found");
       }
     })
-    .catch((err) => response.status(400).json("user not found "));
+    .catch((err) => response.status(400).json("user not found ", err));
 };
 
 export default HandleSignin;
