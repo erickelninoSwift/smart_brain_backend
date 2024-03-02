@@ -24,11 +24,12 @@ const HandleRegister = (request, response) => {
       .into("login")
       .returning("*")
       .then((currentUser) => {
+        console.log(currentUser);
         return trx("users")
           .returning("*")
           .insert({
-            email: email,
-            name: name,
+            email: currentUser[0].email,
+            name: currentUser[0].name,
             joined: new Date().getDay(),
           })
           .then((user) => {
