@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
