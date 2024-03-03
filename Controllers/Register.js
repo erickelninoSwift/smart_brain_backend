@@ -34,7 +34,7 @@ const HandleRegister = (request, response) => {
             .returning("*")
             .then((user) => {
               if (user) {
-                response.send(user);
+                response.status(200).json(user);
               }
             })
             .then(trx.commit)

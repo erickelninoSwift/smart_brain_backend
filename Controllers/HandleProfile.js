@@ -10,7 +10,7 @@ const HandleProfile = (request, response) => {
     })
     .then((allUsers) => {
       if (allUsers.length > 0) {
-        response.send(allUsers[0]);
+        response.json(allUsers[0]);
       }
     });
 };

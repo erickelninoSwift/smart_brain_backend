@@ -18,7 +18,7 @@ const HandleSignin = (request, response) => {
             email: userFound[0].email,
           })
           .then((userSelected) => {
-            response.send(userSelected[0]);
+            response.status(200).json(userSelected[0]);
           })
           .catch((error) => {
             console.log("error", error);
