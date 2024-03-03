@@ -24,10 +24,11 @@ const HandleRegister = (request, response) => {
         .into("login")
         .returning("*")
         .then((userEmail) => {
-          trx("users")
+          console.log(userEmail);
+          return trx("users")
             .insert({
               entries: entries,
-              email: userEmail[0].email,
+              email: email,
               name: name,
               joined: new Date(),
             })
