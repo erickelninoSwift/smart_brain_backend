@@ -27,7 +27,7 @@ const HandleRegister = (request, response) => {
           trx("users")
             .insert({
               entries: entries,
-              email: email,
+              email: userEmail[0].email,
               name: name,
               joined: new Date(),
             })
