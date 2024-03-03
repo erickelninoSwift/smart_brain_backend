@@ -34,6 +34,7 @@ const HandleRegister = (request, response) => {
             .returning("*")
             .then((user) => {
               if (user) {
+                console.log(user);
                 response.status(200).json(user);
               }
             })
